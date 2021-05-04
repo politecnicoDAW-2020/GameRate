@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import auth from "../logic/auth";
 export default {
   data: () => ({
     email: "",
@@ -40,10 +41,13 @@ export default {
     passwordRepeat: ""
   }),
   methods: {
-    register() {
-      console.log(this.email);
-      console.log(this.password);
-      console.log(this.passwordRepeat);
+    async register() {
+        try {
+        const response = await auth.register(this.email, this.password);
+        this.$router.push("/");
+        } catch (error) {
+            console.log(error)
+        }
     }
   }
 };

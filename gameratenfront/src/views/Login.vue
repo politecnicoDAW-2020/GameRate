@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import auth from '../logic/auth';
 export default {
     data() {
         return {
@@ -28,9 +29,17 @@ export default {
     },
 
     methods: {
-        login() {
-            console.log(this.email);
-            console.log(this.password)
+        async login() {
+            try {
+                await auth.login(this.email, this.password);
+                const user = {
+                    email: this.email
+                };
+                auth.setUserLogged(user);
+                this.$router.push("/");
+            } catch (error) {
+                this.error = true;
+      }
         }
     },
 

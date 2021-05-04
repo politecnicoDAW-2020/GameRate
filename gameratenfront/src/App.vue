@@ -33,7 +33,7 @@
         target="_blank"
         text
       >
-        <span class="mr-2">Nombre Usuario</span>
+        <span class="mr-2">{{userLogged}}</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
@@ -55,6 +55,12 @@ export default {
   data: () => ({
     //
   }),
+
+  computed: {
+      userLogged() {
+        return auth.getUserLogged();
+      }
+  },
 
   mounted () {
   this.$store.dispatch('loadGames')

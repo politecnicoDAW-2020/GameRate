@@ -13,6 +13,7 @@
 import GameCard from '../components/GameCard.vue'
 import {mapActions, mapState} from "vuex"
 import axios from "axios";
+import auth from '../logic/auth';
 
   export default {
     name: 'Home',
