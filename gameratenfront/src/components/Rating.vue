@@ -6,6 +6,7 @@
   length="5"
   size="24"
   :value="rating"
+  @input="handleRating"
 ></v-rating>
 </template>
 
@@ -19,7 +20,7 @@ export default {
 
     methods: {
         handleRating() {
-            
+            //axios put rate in score.
         }
     },
 

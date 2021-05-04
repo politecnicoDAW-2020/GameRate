@@ -47,6 +47,7 @@
 <script>
 import Footer from './components/Footer.vue';
 import SearchBar from './components/SearchBar.vue';
+import auth from './logic/auth'
 
 export default {
   components: { Footer, SearchBar },

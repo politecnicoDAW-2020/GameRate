@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "../views/Login.vue"
 import Register from "../views/Register.vue"
+import GameDetail from "../views/GameDetail.vue"
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,12 @@ const routes = [
     name: 'Register',
     component: Register
 
+  },
+  {
+    path: '/game/:id',
+    name: "GameDetail",
+    component: GameDetail,
+    props: true
   },
   {
     path: '/about',

@@ -3,6 +3,8 @@
     class="mx-auto"
     max-width="344"
   >
+  <router-link :to="{name: 'GameDetail'}">DETALLE     </router-link>
+
     <v-img
       :src="require(`../assets/images/${game.image}`)"
       height="200px"
@@ -20,19 +22,23 @@
       color="green"
       text-color="white"
     >
-    {{getAvgScore(game.scores)}}
     </v-chip>
+    <Rating />
   </v-card>
 </template>
 
 <script>
-import axios from 'axios'
 import { mapState, mapActions } from 'vuex'
+import Rating from "./Rating";
+import GameDetail from "../views/GameDetail"
 export default {
+  components: {
+    Rating,
+    GameDetail
+  },
 
     data() {
         return {
-            score: 0
         }
     },
     props: {
@@ -40,7 +46,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(["findScoreById"]),
+/*         ...mapActions(["findScoreById"]),
         getAvgScore(scores) {
             let total = 0;
             for (const score of scores) {
@@ -48,7 +54,7 @@ export default {
                 total += score.score
             }
             return total/scores.length;
-        }
+        } */
     },
 
     computed: {
@@ -57,10 +63,10 @@ export default {
             return `../assets/images/${this.game.image}` 
         },
     },
-
+/* 
     mounted () {
         this.$store.dispatch('loadScores')
-    },
+    }, */
 
 }
 </script>

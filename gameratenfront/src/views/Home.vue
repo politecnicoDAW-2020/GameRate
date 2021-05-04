@@ -3,7 +3,6 @@
   <v-row>
     <v-col v-for="game in games" :key="game.id" sm="4">
   <game-card :game="game" />
-  A
 </v-col>
 </v-row>
 </v-container>

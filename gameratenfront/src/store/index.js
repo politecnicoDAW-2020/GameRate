@@ -7,7 +7,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    games: [],
+    games: [{
+      id:1,
+      title: "Uncharted",
+      genre: "aventura",
+      online: 0,
+      image: "uncharted.png"
+    },
+    {
+      id: 2,
+      title: "Mortal Kombat",
+      genre: "lucha",
+      online: 0,
+      image: "MortalKombat.png"
+    }],
     scores: []
   },
   getters: {
@@ -28,6 +41,9 @@ export default new Vuex.Store({
     },
     GET_TITLES(state) {
       return state.games.map(({title}) => title)
+    },
+    FIND_GAME_BY_ID(state, _id) {
+      return state.games.find(({id}) => id === _id)
     }
   },
   actions: {
@@ -48,6 +64,9 @@ export default new Vuex.Store({
     },
     getTitles({commit}) {
       commit('GET_TITLES');
+    },
+    findGameById({commit}, id) {
+      commit("FIND_GAME_BY_ID", id)
     }
     },
   modules: {
