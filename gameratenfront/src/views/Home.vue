@@ -1,10 +1,12 @@
 <template>
-<div class="games-container">
-<div v-for="game in games" :key="game.id">
+<v-container class="games-container">
+  <v-row>
+    <v-col v-for="game in games" :key="game.id" sm="4">
   <game-card :game="game" />
-</div>
-{{gameList}}
-</div>
+  A
+</v-col>
+</v-row>
+</v-container>
 </template>
 
 <script>
@@ -16,7 +18,6 @@ import axios from "axios";
     name: 'Home',
     data() {
       return {
-        games
       }
     },
 
@@ -27,10 +28,10 @@ import axios from "axios";
     computed: {
       ...mapState(["games"])
     },
-
+/* 
     mounted () {
       this.$store.dispatch('loadGames')
-    },
+    }, */
 
     components: {
         GameCard
