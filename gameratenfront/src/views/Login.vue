@@ -7,6 +7,12 @@
       <label class="form-label" for="#password">Password:</label>
       <input v-model="password" class="form-input" type="password" id="password" placeholder="Password">
       <input class="form-submit" type="submit" value="Login">
+    <v-alert
+        v-if="error"
+        border="right"
+        color="red"
+        type="error"
+    >Email o contraseña incorrecta</v-alert>
     </form>
   </div>
 </template>
@@ -16,7 +22,8 @@ export default {
     data() {
         return {
             email: "",
-            password: ""
+            password: "",
+            error: false
         }
     },
 
