@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -31,48 +27,57 @@
         target="_blank"
         text
       >
-        <span class="mr-2">{{userLogged}}</span>
+        <span class="mr-2">{{ userLogged }}</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
     <div class="container">
-    <v-main>
-      <router-view/>
-    </v-main>
-  </div>
-  <Footer/>
+      <v-main>
+        <router-view />
+      </v-main>
+    </div>
+    <Footer />
   </v-app>
 </template>
 
 <script>
-import Footer from './components/Footer.vue';
-import auth from './logic/auth'
+import axios from "axios";
+import Footer from "./components/Footer.vue";
+import auth from "./logic/auth";
 
 export default {
   components: { Footer },
-  name: 'App',
+  name: "App",
 
   data: () => ({
     //
   }),
 
   computed: {
-      userLogged() {
-        return auth.getUserLogged();
-      }
+    userLogged() {
+      return auth.getUserLogged();
+    },
   },
 
-  mounted () {
-  this.$store.dispatch('loadGames')
-;
+  mounted() {
+    this.$store.dispatch("loadGames");
+  },
+
+  create: function() {
+    axios.interceptors.response.use(undefined, function(err) {
+      return new Promise(function(resolve, reject) {
+        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+          this.$store.dispatch(AUTH_LOGOUT);
+        }
+        throw err;
+      });
+    });
   },
 };
 </script>
 
 <style scoped>
-
-  .container {
-    display: flex;
-  }
-
+.container {
+  display: flex;
+}
 </style>
