@@ -26,8 +26,6 @@
       </div>
 
       <v-spacer></v-spacer>
-      <search-bar />
-
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
@@ -37,20 +35,21 @@
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
+    <div class="container">
     <v-main>
       <router-view/>
     </v-main>
-<Footer/>
+  </div>
+  <Footer/>
   </v-app>
 </template>
 
 <script>
 import Footer from './components/Footer.vue';
-import SearchBar from './components/SearchBar.vue';
 import auth from './logic/auth'
 
 export default {
-  components: { Footer, SearchBar },
+  components: { Footer },
   name: 'App',
 
   data: () => ({
@@ -71,5 +70,9 @@ export default {
 </script>
 
 <style scoped>
+
+  .container {
+    display: flex;
+  }
 
 </style>

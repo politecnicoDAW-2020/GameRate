@@ -2,10 +2,7 @@
 <v-container>
     <v-row>
         <v-col>
-            <game-card :game="game"></game-card>
-        </v-col>
-        <v-col>
-            <game-data :game="game"></game-data>
+            <game-card :game="game" />
         </v-col>
     </v-row>
 </v-container>
@@ -13,24 +10,40 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import GameCard from "../components/GameCard"
-import GameData from "../components/GameData"
+import GameData from "../components/GameData.vue"
+import GameCard from "../components/GameCard";
+import axios from 'axios';
 export default {
 
+    data() {
+        return {
+            game
+        }
+    },
+
+    props: ["id"],
+
     components: {
-        GameCard,
-        GameData
+        GameData,
+        GameCard
     },
 
     computed: {
-        ...mapState(["games"])
+        gameById: (this.$route.params.gameId)
     },
     methods: {
-        ...mapActions(["findGameById"])
+           loadGames ({commit}) {
+      axios.get("http://127.0.0.1:8000/api/games")
+      .then(response => response.data)
+      .then(games => {
+        commit('SET_GAMES', games)
+      })
     },
-
-    mounted () {
-        this.$store.dispatch('findGameById', [1]).finally((data) => this.game = data)
+        getGameById(id) {
+            axios.get("http://127.0.0.1:8000/api/games/" + id).
+            then(response => resonse.data)
+            .then(game => this.game = game)
+        }
     },
 }
 </script>

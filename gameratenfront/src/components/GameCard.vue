@@ -3,8 +3,7 @@
     class="mx-auto"
     max-width="344"
   >
-  <router-link :to="{name: 'GameDetail'}">DETALLE     </router-link>
-
+  <router-link :to="{name: 'GameDetail', params: { gameId: game.id }}"> 
     <v-img
       :src="require(`../assets/images/${game.image}`)"
       height="200px"
@@ -22,7 +21,9 @@
       color="green"
       text-color="white"
     >
+    {{game.rating}}
     </v-chip>
+    </router-link>
     <Rating />
   </v-card>
 </template>
@@ -32,6 +33,7 @@ import { mapState, mapActions } from 'vuex'
 import Rating from "./Rating";
 import GameDetail from "../views/GameDetail"
 export default {
+  name: "GameCard",
   components: {
     Rating,
     GameDetail
@@ -46,15 +48,6 @@ export default {
     },
 
     methods: {
-/*         ...mapActions(["findScoreById"]),
-        getAvgScore(scores) {
-            let total = 0;
-            for (const score of scores) {
-                console.log(score.score)
-                total += score.score
-            }
-            return total/scores.length;
-        } */
     },
 
     computed: {

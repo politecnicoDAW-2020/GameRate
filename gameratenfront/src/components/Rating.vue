@@ -4,7 +4,7 @@
   half-increments
   hover
   length="5"
-  size="24"
+  size="20"
   :value="rating"
   @input="handleRating"
 ></v-rating>
