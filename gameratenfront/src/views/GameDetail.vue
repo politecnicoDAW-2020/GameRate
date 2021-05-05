@@ -27,21 +27,14 @@ export default {
         GameData,
         GameCard
     },
+    created () {
+        this.getGameById(this.$route.params.gameId);
+    },
 
-    computed: {
-        gameById: (this.$route.params.gameId)
-    },
     methods: {
-           loadGames ({commit}) {
-      axios.get("http://127.0.0.1:8000/api/games")
-      .then(response => response.data)
-      .then(games => {
-        commit('SET_GAMES', games)
-      })
-    },
         getGameById(id) {
             axios.get("http://127.0.0.1:8000/api/games/" + id).
-            then(response => resonse.data)
+            then(response => response.data)
             .then(game => this.game = game)
         }
     },

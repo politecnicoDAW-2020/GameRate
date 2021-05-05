@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from "../views/Login.vue"
 import Register from "../views/Register.vue"
 import GameDetail from "../views/GameDetail.vue"
+import Create from "../views/Create.vue"
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     name: "GameDetail",
     component: GameDetail,
     props: true
+  },
+  {
+    path: '/create',
+    name: "Create",
+    component: Create
   },
   {
     path: '/about',
