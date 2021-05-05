@@ -1,50 +1,65 @@
 <template>
-<v-container>
+  <v-container>
+      <v-row>
+          <game-title :game="game" />
+      </v-row>
     <v-row>
-        <v-col>
-            <game-card :game="game" />
-        </v-col>
+      <v-col>
+        <game-card :game="game" />
+      </v-col>
+      <v-col>
+        <synopsis :game="game" />
+      </v-col>
     </v-row>
     <recommendations />
-</v-container>
+  </v-container>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
-import GameData from "../components/GameData.vue"
+import axios from "axios";
+import GameData from "../components/GameData.vue";
 import GameCard from "../components/GameCard";
-import axios from 'axios';
-import Recommendations from '../components/Recommendations.vue';
+import Recommendations from "../components/Recommendations.vue";
+import Synopsis from "../components/Synopsis.vue";
+import GameTitle from "../components/GameTitle.vue";
 export default {
+  data() {
+    return {
+      game: {
+        id: 1,
+        title: "Uncharted",
+        genre: "aventura",
+        synopsis: "aaaaaa",
+        online: 0,
+        image: "uncharted.png",
+        rating: 9,
+      },
+    };
+  },
 
-    data() {
-        return {
-            game
-        }
-    },
+  props: ["id"],
 
-    props: ["id"],
+  components: {
+    GameData,
+    GameCard,
+    Recommendations,
+    Synopsis,
+    Recommendations,
+    GameTitle
+  },
+  created() {
+    this.getGameById(this.$route.params.gameId);
+  },
 
-    components: {
-        GameData,
-        GameCard,
-        Recommendations,
-        Recommendations
+  methods: {
+    getGameById(id) {
+      axios
+        .get("http://127.0.0.1:8000/api/games/" + id)
+        .then((response) => response.data)
+        .then((game) => (this.game = game));
     },
-    created () {
-        this.getGameById(this.$route.params.gameId);
-    },
-
-    methods: {
-        getGameById(id) {
-            axios.get("http://127.0.0.1:8000/api/games/" + id).
-            then(response => response.data)
-            .then(game => this.game = game)
-        }
-    },
-}
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

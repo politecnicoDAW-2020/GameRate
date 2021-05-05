@@ -1,6 +1,6 @@
 <template>
-  <v-row justify="space-around">
-    <v-avatar v-for="game in games" :key="game.id">
+  <v-row>
+    <v-avatar class="mr-2" v-for="game in games" :key="game.id">
       <img :src="require(`../assets/images/${game.image}`)" :title="game.title" />
     </v-avatar>
   </v-row>
