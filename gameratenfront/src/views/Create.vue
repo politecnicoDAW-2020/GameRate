@@ -73,7 +73,12 @@ export default {
 
   methods: {
     submit() {
-        // axios.post("http://127.0.0.1:8000/api/create", {...this.form, image: this.convertStringTitle()})
+        axios.post("http://127.0.0.1:8000/api/create", {...this.form, image: this.convertStringTitle()})
+        .then((res) => {
+            console.log(res)
+        }).catch((error) => {
+            console.log(error)
+        });
         const dataobj = { ...this.form, image: this.convertStringTitle};
         console.log(dataobj)
     },

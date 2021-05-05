@@ -1,12 +1,11 @@
 <template>
     <v-card
-    class="mx-auto"
-    max-width="344"
+    class="mb-auto"
+    max-width="244"
   >
   <router-link :to="{name: 'GameDetail', params: { gameId: game.id }}"> 
     <v-img
       :src="require(`../assets/images/${game.image}`)"
-      height="200px"
     ></v-img>
 
     <v-card-title>
@@ -17,7 +16,7 @@
       {{game.genre}}
     </v-card-subtitle>
     <v-chip
-      class="ma-2"
+      class="chip ml-2"
       color="green"
       text-color="white"
     >
