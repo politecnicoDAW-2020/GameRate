@@ -29,9 +29,10 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import Rating from "./Rating";
-import GameDetail from "../views/GameDetail"
+import Rating from "./Rating.vue";
+import GameDetail from "../views/GameDetail.vue"
 export default {
+  name: "GameCard",
   components: {
     Rating,
     GameDetail

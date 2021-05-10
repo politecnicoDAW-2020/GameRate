@@ -2,7 +2,9 @@
 <v-container class="games-container">
   <v-row>
     <v-col v-for="game in games" :key="game.id" sm="4">
+  <router-link :to="{name: 'GameDetail', params: {id:game.id}}">
   <game-card :game="game" />
+  </router-link>>
 </v-col>
 </v-row>
 </v-container>
@@ -28,10 +30,9 @@ import auth from '../logic/auth';
     computed: {
       ...mapState(["games"])
     },
-/* 
     mounted () {
       this.$store.dispatch('loadGames')
-    }, */
+    },
 
     components: {
         GameCard

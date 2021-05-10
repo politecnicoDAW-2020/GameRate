@@ -26,7 +26,6 @@
       </div>
 
       <v-spacer></v-spacer>
-      <search-bar />
 
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"

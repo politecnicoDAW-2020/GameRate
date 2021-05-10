@@ -7,20 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    games: [{
-      id:1,
-      title: "Uncharted",
-      genre: "aventura",
-      online: 0,
-      image: "uncharted.png"
-    },
-    {
-      id: 2,
-      title: "Mortal Kombat",
-      genre: "lucha",
-      online: 0,
-      image: "MortalKombat.png"
-    }],
+    games: [],
     scores: []
   },
   getters: {

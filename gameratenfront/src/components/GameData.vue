@@ -2,7 +2,7 @@
     <v-container>
         <v-row>
             <v-col>
-                <span>{{game.title}}</span>
+                <span>{{game[0].title}}</span>
             </v-col>
         </v-row>
         <v-row>
@@ -11,8 +11,8 @@
                 solo
                 name="input-7-4"
                 label="Solo textarea"
+                :value="game[0].synopsis"
                 >
-                    {{game.synopsis}}
                 </v-textarea>
             </v-col>
         </v-row>
@@ -21,6 +21,7 @@
 
 <script>
 export default {
+    name: "GameData",
     props: {
         game: {}
     },

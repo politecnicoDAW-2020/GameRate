@@ -2,20 +2,26 @@
 <v-container>
     <v-row>
         <v-col>
-            <game-card :game="game"></game-card>
         </v-col>
         <v-col>
-            <game-data :game="game"></game-data>
+            <GameData :game="game" />
         </v-col>
     </v-row>
 </v-container>
 </template>
 
 <script>
+import GameCard from "../components/GameCard.vue"
+import axios from 'axios'
 import { mapActions, mapState } from 'vuex'
-import GameCard from "../components/GameCard"
-import GameData from "../components/GameData"
+import GameData from "../components/GameData.vue"
 export default {
+
+    data() {
+        return {
+            game: {}
+        }
+    },
 
     components: {
         GameCard,
@@ -26,11 +32,16 @@ export default {
         ...mapState(["games"])
     },
     methods: {
-        ...mapActions(["findGameById"])
+        ...mapActions(["findGameById"]),
+    
+    getGameById(id) {
+      axios.get("http://127.0.0.1:8000/api/games/"+id)
+      .then(response => this.game = response.data)       
+       }
     },
 
     mounted () {
-        this.$store.dispatch('findGameById', [1]).finally((data) => this.game = data)
+        this.getGameById(this.$route.params.id);
     },
 }
 </script>
