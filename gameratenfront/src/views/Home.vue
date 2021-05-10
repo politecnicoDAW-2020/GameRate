@@ -1,26 +1,17 @@
 <template>
-<v-container class="games-container">
-  <v-row>
-    <v-col v-for="game in games" :key="game.id" sm="4">
-  <router-link :to="{name: 'GameDetail', params: {id:game.id}}">
-  <game-card :game="game" />
-  </router-link>>
-</v-col>
-</v-row>
-</v-container>
+  <most-valued-games />
 </template>
 
 <script>
 import GameCard from '../components/GameCard.vue'
 import {mapActions, mapState} from "vuex"
-import axios from "axios";
-import auth from '../logic/auth';
+import MostValuedGames from '../components/MostValuedGames.vue'
 
   export default {
     name: 'Home',
-    data() {
-      return {
-      }
+
+    components: {
+        GameCard, MostValuedGames
     },
 
     methods: {
@@ -28,22 +19,15 @@ import auth from '../logic/auth';
 
     },
     computed: {
-      ...mapState(["games"])
+      ...mapState(["games"]),      
     },
     mounted () {
       this.$store.dispatch('loadGames')
-    },
-
-    components: {
-        GameCard
     },
 
   }
 </script>
 
 <style>
-  .games-container {
-    display:flex;
-    justify-content: space-around;
-  }
+
 </style>

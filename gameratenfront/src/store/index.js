@@ -7,7 +7,60 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    games: [],
+    games: [{
+      id:1,
+      title: "Uncharted",
+      genre: "aventura",
+      synopsis: "aaaaaa",
+      online: 0,
+      image: "uncharted.png",
+      rating: 9
+    },
+    {
+      id: 2,
+      title: "Mortal Kombat",
+      genre: "lucha",
+      synopsis: "aaaaaa",
+      online: 0,
+      image: "MortalKombat.png"
+    },
+    {
+      id:3,
+      title: "Uncharted",
+      genre: "aventura",
+      synopsis: "aaaaaa",
+      online: 0,
+      image: "uncharted.png",
+      rating: 9
+    },
+    {
+      id:4,
+      title: "Uncharted",
+      genre: "aventura",
+      synopsis: "aaaaaa",
+      online: 0,
+      image: "uncharted.png",
+      rating: 9
+    },
+    {
+      id:5,
+      title: "Uncharted",
+      genre: "aventura",
+      synopsis: "aaaaaa",
+      online: 0,
+      image: "uncharted.png",
+      rating: 9
+    },
+    {
+      id:6,
+      title: "Uncharted",
+      genre: "aventura",
+      synopsis: "aaaaaa",
+      online: 0,
+      image: "uncharted.png",
+      rating: 9
+    },
+  ],
     scores: []
   },
   getters: {
@@ -31,6 +84,10 @@ export default new Vuex.Store({
     },
     FIND_GAME_BY_ID(state, _id) {
       return state.games.find(({id}) => id === _id)
+    },
+    GET_MVG_GAMES(state) {
+      state.games.sort((a,b) => a.s)
+
     }
   },
   actions: {

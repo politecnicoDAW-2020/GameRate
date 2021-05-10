@@ -1,12 +1,12 @@
 <template>
   <v-rating
+  v-model="rating"
   color="warning"
   half-increments
   hover
   length="5"
-  size="24"
-  :value="rating"
-  @input="handleRating"
+  size="20"
+  @input="handleRating($event)"
 ></v-rating>
 </template>
 
@@ -14,13 +14,13 @@
 export default {
     data() {
         return {
-            rating: 4.5
+            rating: 5
         }
     },
 
     methods: {
-        handleRating() {
-            //axios put rate in score.
+        handleRating(value) {
+            console.log(value)
         }
     },
 

@@ -1,13 +1,11 @@
 <template>
     <v-card
-    class="mx-auto"
-    max-width="344"
+    class="mb-auto"
+    max-width="244"
   >
-  <router-link :to="{name: 'GameDetail'}">DETALLE     </router-link>
-
+  <router-link :to="{name: 'GameDetail', params: { gameId: game.id }}"> 
     <v-img
       :src="require(`../assets/images/${game.image}`)"
-      height="200px"
     ></v-img>
 
     <v-card-title>
@@ -18,11 +16,13 @@
       {{game.genre}}
     </v-card-subtitle>
     <v-chip
-      class="ma-2"
+      class="chip ml-2"
       color="green"
       text-color="white"
     >
+    {{game.rating}}
     </v-chip>
+    </router-link>
     <Rating />
   </v-card>
 </template>
@@ -47,15 +47,6 @@ export default {
     },
 
     methods: {
-/*         ...mapActions(["findScoreById"]),
-        getAvgScore(scores) {
-            let total = 0;
-            for (const score of scores) {
-                console.log(score.score)
-                total += score.score
-            }
-            return total/scores.length;
-        } */
     },
 
     computed: {
