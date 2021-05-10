@@ -1,18 +1,18 @@
 <template>
-  <v-container>
+  <div class="contain">
+    <game-title :game="game" />
+    <v-container>
       <v-row>
-          <game-title :game="game" />
+        <v-col>
+          <game-card :game="game" />
+        </v-col>
+        <v-col>
+          <synopsis :game="game" />
+        </v-col>
       </v-row>
-    <v-row>
-      <v-col>
-        <game-card :game="game" />
-      </v-col>
-      <v-col>
-        <synopsis :game="game" />
-      </v-col>
-    </v-row>
-    <recommendations />
-  </v-container>
+      <recommendations />
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -45,7 +45,7 @@ export default {
     Recommendations,
     Synopsis,
     Recommendations,
-    GameTitle
+    GameTitle,
   },
   created() {
     this.getGameById(this.$route.params.gameId);

@@ -1,6 +1,5 @@
 <template>
-  <v-app>
-    <v-app-bar app color="teal" dark>
+      <v-app-bar app color="teal" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -31,53 +30,14 @@
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
-    <div class="container">
-      <v-main>
-        <router-view />
-      </v-main>
-    </div>
-    <Footer />
-  </v-app>
 </template>
 
 <script>
-import axios from "axios";
-import Footer from "./components/Footer.vue";
-import auth from "./logic/auth";
-
 export default {
-  components: { Footer },
-  name: "App",
 
-  data: () => ({
-    //
-  }),
-
-  computed: {
-    userLogged() {
-      return auth.getUserLogged();
-    },
-  },
-
-  mounted() {
-    this.$store.dispatch("loadGames");
-  },
-
-  create: function() {
-    axios.interceptors.response.use(undefined, function(err) {
-      return new Promise(function(resolve, reject) {
-        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
-          this.$store.dispatch(AUTH_LOGOUT);
-        }
-        throw err;
-      });
-    });
-  },
-};
+}
 </script>
 
-<style scoped>
-.container {
-  display: flex;
-}
+<style>
+
 </style>
