@@ -23,12 +23,12 @@
     {{game.rating}}
     </v-chip>
     </router-link>
-    <Rating />
+    <Rating :game="game" />
   </v-card>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import Rating from "./Rating";
 import GameDetail from "../views/GameDetail"
 export default {

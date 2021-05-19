@@ -9,23 +9,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import GameCard from './GameCard.vue'
 export default {
     name: "MostValuedGames",
-    data() {
-        return {
-            games
-        }
+    props: {
+        games: {}
     },
     components: {
         GameCard
     },
-
-    computed: {
-        ...mapState(["games"])
-    },
-
 }
 </script>
 
