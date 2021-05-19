@@ -47,18 +47,13 @@ export default {
     Recommendations,
     GameTitle,
   },
-  created() {
-    this.getGameById(this.$route.params.gameId);
-  },
-
-  methods: {
-    getGameById(id) {
+  mounted() {
       axios
         .get("http://127.0.0.1:8000/api/games/" + id)
         .then((response) => response.data)
-        .then((game) => (this.game = game));
-    },
-  },
+        .then((game) => (this.game = game));  },
+
+  methods: {}
 };
 </script>
 

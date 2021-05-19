@@ -47,7 +47,7 @@ export default {
     games: [],
   }),
 
-  created() {
+  mounted() {
     axios
       .get("http://127.0.0.1:8000/api/games/pendent" + auth.getUserLogged())
       .then((response) => response.data)
