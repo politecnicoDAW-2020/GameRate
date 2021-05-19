@@ -18,6 +18,9 @@
           src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
           width="100"
         />
+        <v-btn to="/pendant">
+          Lista
+        </v-btn>
       </div>
 
       <v-spacer></v-spacer>
@@ -26,14 +29,23 @@
         target="_blank"
         text
       >
-        <span class="mr-2">{{ userLogged }}</span>
-        <v-icon>mdi-open-in-new</v-icon>
+        <span class="mr-2">{{ user.name }}</span>
       </v-btn>
     </v-app-bar>
 </template>
 
 <script>
+import { getUserLogged } from "../logic/auth"
 export default {
+  data() {
+    return {
+      user: ""
+    }
+  },
+
+  mounted() {
+    this.user = getUserLogged();
+  }
 
 }
 </script>

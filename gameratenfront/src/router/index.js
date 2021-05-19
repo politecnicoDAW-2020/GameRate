@@ -6,6 +6,7 @@ import Register from "../views/Register.vue"
 import GameDetail from "../views/GameDetail.vue"
 import Create from "../views/Create.vue"
 import Profile from "../views/Profile.vue";
+import Pendant from "../views/Pendant.vue"
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -59,6 +60,11 @@ const routes = [
     name: 'Profile',
     component: Profile,
     beforeEnter: ifAuthenticated
+  },
+  {
+    path: '/pendant',
+    name: 'Pendant',
+    component: Pendant
   },
   {
     path: '/about',

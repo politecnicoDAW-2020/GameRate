@@ -53,15 +53,6 @@ export default {
         online: false,
     },
     valid: false,
-    title: "",
-    genre: "",
-    nameRules: [(v) => !!v || "El título no puede estar vacío"],
-    synopsis: "",
-    online: false,
-    emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+/.test(v) || "E-mail must be valid",
-    ],
     genres: ["Acción", "Aventura", "Lucha", "Terror", "Plataformas", "Puzzles"],
   }),
 
@@ -84,10 +75,10 @@ export default {
     },
     clear() {
       this.$v.$reset();
-      this.name = "";
-      this.email = "";
-      this.select = null;
-      this.checkbox = false;
+      this.form.title = "";
+      this.form.genre = "";
+      this.form.synopsis = "";
+      this.form.online = false;
     },
   },
 };

@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { getUserLogged } from "../logic/auth";
+import auth from "../logic/auth";
 import GameCard from "./GameCard.vue";
 export default {
   components: { GameCard },
@@ -49,7 +49,7 @@ export default {
 
   created() {
     axios
-      .get("http://127.0.0.1:8000/api/games/pendent" + getUserLogged())
+      .get("http://127.0.0.1:8000/api/games/pendent" + auth.getUserLogged())
       .then((response) => response.data)
       .then((games) => (this.games = games));
   },
