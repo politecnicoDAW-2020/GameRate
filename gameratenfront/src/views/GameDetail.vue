@@ -10,7 +10,7 @@
           <synopsis :game="game" />
         </v-col>
       </v-row>
-      <recommendations />
+      <recommendations :genre="game.genre" />
     </v-container>
   </div>
 </template>

@@ -7,60 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    games: [{
-      id:1,
-      title: "Uncharted",
-      genre: "aventura",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "uncharted.png",
-      rating: 9
-    },
-    {
-      id: 2,
-      title: "Mortal Kombat",
-      genre: "lucha",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "MortalKombat.png"
-    },
-    {
-      id:3,
-      title: "Uncharted",
-      genre: "aventura",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "uncharted.png",
-      rating: 9
-    },
-    {
-      id:4,
-      title: "Uncharted",
-      genre: "aventura",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "uncharted.png",
-      rating: 9
-    },
-    {
-      id:5,
-      title: "Uncharted",
-      genre: "aventura",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "uncharted.png",
-      rating: 9
-    },
-    {
-      id:6,
-      title: "Uncharted",
-      genre: "aventura",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "uncharted.png",
-      rating: 9
-    },
-  ],
+    games: [],
     scores: []
   },
   getters: {
