@@ -22,6 +22,8 @@ import GameCard from "../components/GameCard";
 import Recommendations from "../components/Recommendations.vue";
 import Synopsis from "../components/Synopsis.vue";
 import GameTitle from "../components/GameTitle.vue";
+import API_URL from "../constants/endpoints"
+
 export default {
   data() {
     return {
@@ -49,7 +51,7 @@ export default {
   },
   mounted() {
       axios
-        .get("http://127.0.0.1:8000/api/games/" + id)
+        .get(`${API_URL}/api/games/` + id)
         .then((response) => response.data)
         .then((game) => (this.game = game));  },
 

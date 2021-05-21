@@ -25,7 +25,7 @@ export default {
   methods: {
     handleRating(value) {
       axios
-        .post("http://127.0.0.1:8000/api/scores/" + "/" + user.id + game.id, {
+        .post(`${API_URL}/api/scores/` + "/" + user.id + game.id, {
             user: auth.getUserLogged(),
             score: value
         })
@@ -36,7 +36,7 @@ export default {
 
   mounted() {
     axios
-      .get("http://127.0.0.1:8000/api/scores/" + game.id)
+      .get(`${API_URL}/api/scores/` + game.id)
       .then((response) => response.data)
       .then((rating) => (this.rating = rating));
   },
