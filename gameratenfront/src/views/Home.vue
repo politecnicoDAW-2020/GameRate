@@ -6,6 +6,7 @@
 import GameCard from '../components/GameCard.vue'
 import {mapActions, mapState} from "vuex"
 import MostValuedGames from '../components/MostValuedGames.vue'
+import axios from 'axios'
 
   export default {
     name: 'Home',

@@ -10,6 +10,7 @@
 
 <script>
 import GameCard from './GameCard.vue'
+import axios from 'axios'
 export default {
     name: "MostValuedGames",
     props: {

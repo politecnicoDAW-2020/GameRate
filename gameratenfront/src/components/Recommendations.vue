@@ -23,7 +23,7 @@ export default {
 
   mounted() {
     axios
-        .get(`${API_URL}/api/games/`, {
+        .get(`http://127.0.0.1:8000/api/games/`, {
           params: {
             genre: genre
           }
@@ -35,7 +35,7 @@ export default {
   methods: {
     getRecommendations(genre) {
       axios
-        .get(`${API_URL}/api/games/`, {
+        .get(`http://127.0.0.1:8000/api/games/`, {
           params: {
             genre: genre
           }

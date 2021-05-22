@@ -21,7 +21,7 @@ export default {
 
   mounted() {
     axios
-      .get(`${API_URL}/api/games/pendent/`, + auth.getUserLogged())
+      .get(`http://127.0.0.1:8000/api/games/pendent/`, + auth.getUserLogged())
       .then((response) => response.data)
       .then((games) => (this.games = games));
   },

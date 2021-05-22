@@ -23,7 +23,7 @@ const mutations = {
 
 const actions = {
     async setGameList({commit}) {
-        axios.get(`${API_URL}/api/games/`)
+        axios.get(`http://127.0.0.1:8000/api/games/`)
         .then(response => commit('SET_GAME_LIST', response.data))
     }
 }

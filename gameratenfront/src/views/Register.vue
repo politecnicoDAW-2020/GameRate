@@ -34,6 +34,7 @@
 
 <script>
 import auth from "../logic/auth";
+import axios from 'axios'
 export default {
   data: () => ({
     email: "",

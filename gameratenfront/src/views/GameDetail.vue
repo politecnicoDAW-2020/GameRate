@@ -1,5 +1,6 @@
 <template>
   <div class="contain">
+    <h1>{{game}}</h1>
     <game-title :game="game" />
     <v-container>
       <v-row>
@@ -18,47 +19,19 @@
 <script>
 import axios from "axios";
 import GameData from "../components/GameData.vue";
-import GameCard from "../components/GameCard";
+import GameCard from "../components/GameCard.vue";
 import Recommendations from "../components/Recommendations.vue";
 import Synopsis from "../components/Synopsis.vue";
 import GameTitle from "../components/GameTitle.vue";
-import API_URL from "../constants/endpoints"
 
 export default {
+  
+  props: ["id"],
   data() {
     return {
-      game: {
-        id: 1,
-        title: "Uncharted",
-        genre: "aventura",
-        synopsis: "aaaaaa",
-        online: 0,
-        image: "uncharted.png",
-        rating: 9,
-      },
-    };
+      game: {}
+    }
   },
-
-    components: {
-        GameCard,
-        GameData
-    },
-
-    computed: {
-        ...mapState(["games"])
-    },
-    methods: {
-        ...mapActions(["findGameById"]),
-    
-    getGameById(id) {
-      axios.get("http://127.0.0.1:8000/api/games/"+id)
-      .then(response => this.game = response.data)       
-       }
-    },
-
-    mounted () {
-        this.getGameById(this.$route.params.id);
-  props: ["id"],
 
   components: {
     GameData,
@@ -70,13 +43,10 @@ export default {
   },
   mounted() {
       axios
-        .get(`${API_URL}/api/games/` + id)
+        .get(`http://127.0.0.1:8000/api/games/${this.$route.params.gameId}`)
         .then((response) => response.data)
-        .then((game) => (this.game = game));
-    },
+        .then((game) => this.game = game);
   },
-        .then((game) => (this.game = game));  },
-
   methods: {}
 };
 </script>

@@ -1,4 +1,5 @@
 <template>
+<div class="div">
   <v-rating
     v-model="rating"
     color="warning"
@@ -8,14 +9,16 @@
     size="20"
     @input="handleRating($event)"
   ></v-rating>
+  </div>
 </template>
 
 <script>
 import auth from "../logic/auth"
+import axios from 'axios'
 export default {
   data() {
     return {
-      rating: 5,
+      rating: 0,
     };
   },
   props: {
@@ -25,7 +28,7 @@ export default {
   methods: {
     handleRating(value) {
       axios
-        .post(`${API_URL}/api/scores/` + "/" + user.id + game.id, {
+        .post(`http://127.0.0.1:8000/api/scores/` + "/" + this.user.id + this.game.id, {
             user: auth.getUserLogged(),
             score: value
         })
@@ -36,9 +39,16 @@ export default {
 
   mounted() {
     axios
-      .get(`${API_URL}/api/scores/` + game.id)
+      .get(`http://127.0.0.1:8000/api/scores/` + this.game.id)
       .then((response) => response.data)
-      .then((rating) => (this.rating = rating));
+      .then((rate) => {
+        const sum = rate.reduce(
+          (scores, {score}) =>  scores += score, 0
+        ) 
+        console.log(sum/rate.length)
+        const stars = sum/rate.length
+        this.rating = stars
+      });
   },
 };
 </script>
