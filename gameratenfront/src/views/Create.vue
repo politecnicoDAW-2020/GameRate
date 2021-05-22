@@ -44,6 +44,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+import API_URL from "../constants/endpoints"
+
 export default {
   data: () => ({
     form: {
@@ -53,15 +56,6 @@ export default {
         online: false,
     },
     valid: false,
-    title: "",
-    genre: "",
-    nameRules: [(v) => !!v || "El título no puede estar vacío"],
-    synopsis: "",
-    online: false,
-    emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+/.test(v) || "E-mail must be valid",
-    ],
     genres: ["Acción", "Aventura", "Lucha", "Terror", "Plataformas", "Puzzles"],
   }),
 
@@ -73,21 +67,21 @@ export default {
 
   methods: {
     submit() {
-        axios.post("http://127.0.0.1:8000/api/create", {...this.form, image: this.convertStringTitle()})
+        axios.post(`${API_URL}/api/create/`, {...this.form, image: this.convertStringTitle()})
         .then((res) => {
             console.log(res)
         }).catch((error) => {
             console.log(error)
         });
         const dataobj = { ...this.form, image: this.convertStringTitle};
-        console.log(dataobj)
+        console.log(dataobj);
     },
     clear() {
       this.$v.$reset();
-      this.name = "";
-      this.email = "";
-      this.select = null;
-      this.checkbox = false;
+      this.form.title = "";
+      this.form.genre = "";
+      this.form.synopsis = "";
+      this.form.online = false;
     },
   },
 };

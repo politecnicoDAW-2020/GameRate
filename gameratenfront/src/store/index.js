@@ -1,66 +1,14 @@
 import axios from 'axios';
 import Vue from 'vue'
 import Vuex from 'vuex'
+import API_URL from "../constants/endpoints"
 import games from './module-games';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    games: [{
-      id:1,
-      title: "Uncharted",
-      genre: "aventura",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "uncharted.png",
-      rating: 9
-    },
-    {
-      id: 2,
-      title: "Mortal Kombat",
-      genre: "lucha",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "MortalKombat.png"
-    },
-    {
-      id:3,
-      title: "Uncharted",
-      genre: "aventura",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "uncharted.png",
-      rating: 9
-    },
-    {
-      id:4,
-      title: "Uncharted",
-      genre: "aventura",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "uncharted.png",
-      rating: 9
-    },
-    {
-      id:5,
-      title: "Uncharted",
-      genre: "aventura",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "uncharted.png",
-      rating: 9
-    },
-    {
-      id:6,
-      title: "Uncharted",
-      genre: "aventura",
-      synopsis: "aaaaaa",
-      online: 0,
-      image: "uncharted.png",
-      rating: 9
-    },
-  ],
+    games: [],
     scores: []
   },
   getters: {
@@ -92,14 +40,14 @@ export default new Vuex.Store({
   },
   actions: {
     loadGames ({commit}) {
-      axios.get("http://127.0.0.1:8000/api/games")
+      axios.get(`${API_URL}/api/games/`)
       .then(response => response.data)
       .then(games => {
         commit('SET_GAMES', games)
       })
     },
     loadScores ({commit}) {
-      axios.get("http://127.0.0.1:8000/api/scores")
+      axios.get(`${API_URL}/api/scores/`)
       .then(response => response.data)
       .then(scores => {
         console.log(scores);

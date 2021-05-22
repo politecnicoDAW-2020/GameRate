@@ -10,7 +10,7 @@
           <synopsis :game="game" />
         </v-col>
       </v-row>
-      <recommendations />
+      <recommendations :genre="game.genre" />
     </v-container>
   </div>
 </template>
@@ -22,6 +22,8 @@ import GameCard from "../components/GameCard";
 import Recommendations from "../components/Recommendations.vue";
 import Synopsis from "../components/Synopsis.vue";
 import GameTitle from "../components/GameTitle.vue";
+import API_URL from "../constants/endpoints"
+
 export default {
   data() {
     return {
@@ -36,13 +38,6 @@ export default {
       },
     };
   },
-
-<<<<<<< HEAD
-    data() {
-        return {
-            game: {}
-        }
-    },
 
     components: {
         GameCard,
@@ -63,7 +58,6 @@ export default {
 
     mounted () {
         this.getGameById(this.$route.params.id);
-=======
   props: ["id"],
 
   components: {
@@ -74,19 +68,16 @@ export default {
     Recommendations,
     GameTitle,
   },
-  created() {
-    this.getGameById(this.$route.params.gameId);
-  },
-
-  methods: {
-    getGameById(id) {
+  mounted() {
       axios
-        .get("http://127.0.0.1:8000/api/games/" + id)
+        .get(`${API_URL}/api/games/` + id)
         .then((response) => response.data)
         .then((game) => (this.game = game));
->>>>>>> 14433a95b7729202e62c34ce17d78003b558cedd
     },
   },
+        .then((game) => (this.game = game));  },
+
+  methods: {}
 };
 </script>
 

@@ -1,43 +1,29 @@
 <template>
-  <v-app>
-    <v-app-bar app color="teal" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+  <div class="app-container">
+    <v-app>
+      <v-app-bar app color="teal" dark>
+        <div class="d-flex align-center">
+          <v-btn to="/pendant"> Lista </v-btn>
+        </div>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+        <v-spacer></v-spacer>
+        <v-btn
+          href="https://github.com/vuetifyjs/vuetify/releases/latest"
+          target="_blank"
+          text
+        >
+          <span class="mr-2">{{ userLogged }}</span>
+          <v-icon>mdi-open-in-new</v-icon>
+        </v-btn>
+      </v-app-bar>
+      <div class="container">
+        <v-main>
+          <router-view />
+        </v-main>
       </div>
-
-      <v-spacer></v-spacer>
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">{{ userLogged }}</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <div class="container">
-      <v-main>
-        <router-view />
-      </v-main>
-    </div>
-    <Footer />
-  </v-app>
+      <Footer />
+    </v-app>
+  </div>
 </template>
 
 <script>
@@ -59,25 +45,26 @@ export default {
     },
   },
 
-  mounted() {
+  created() {
     this.$store.dispatch("loadGames");
   },
 
-  create: function() {
-    axios.interceptors.response.use(undefined, function(err) {
-      return new Promise(function(resolve, reject) {
+/*   create: function () {
+    axios.interceptors.response.use(undefined, function (err) {
+      return new Promise(function (resolve, reject) {
         if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
           this.$store.dispatch(AUTH_LOGOUT);
         }
         throw err;
       });
     });
-  },
+  }, */
 };
 </script>
 
 <style scoped>
 .container {
+  height: 100%;
   display: flex;
 }
 </style>

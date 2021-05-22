@@ -1,5 +1,5 @@
 <template>
-  <most-valued-games />
+  <most-valued-games :games="games" />
 </template>
 
 <script>
@@ -21,10 +21,6 @@ import MostValuedGames from '../components/MostValuedGames.vue'
     computed: {
       ...mapState(["games"]),      
     },
-    mounted () {
-      this.$store.dispatch('loadGames')
-    },
-
   }
 </script>
 

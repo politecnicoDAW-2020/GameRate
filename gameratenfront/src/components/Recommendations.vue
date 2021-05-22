@@ -10,57 +10,36 @@
 import axios from "axios";
 export default {
   name: "Recommendations",
+
+  props: {
+    genre: ""
+  },
   data() {
     return {
-      games: [
-        {
-          id: 1,
-          title: "Uncharted",
-          genre: "aventura",
-          synopsis: "aaaaaa",
-          online: 0,
-          image: "uncharted.png",
-          rating: 9,
-        },
-        {
-          id: 2,
-          title: "Mortal Kombat",
-          genre: "lucha",
-          synopsis: "aaaaaa",
-          online: 0,
-          image: "MortalKombat.png",
-        },
-        {
-          id: 3,
-          title: "Uncharted",
-          genre: "aventura",
-          synopsis: "aaaaaa",
-          online: 0,
-          image: "uncharted.png",
-          rating: 9,
-        },
-        {
-          id: 4,
-          title: "Uncharted",
-          genre: "aventura",
-          synopsis: "aaaaaa",
-          online: 0,
-          image: "uncharted.png",
-          rating: 9,
-        },
-      ],
+      games: []
     };
   },
   props: {},
 
-  created() {
-    // this.getRecommendations(this.game.genre);
-  },
+  mounted() {
+    axios
+        .get(`${API_URL}/api/games/`, {
+          params: {
+            genre: genre
+          }
+        })
+        .then((response) => response.data)
+        .then((games) => (this.games = games));
+},
 
   methods: {
     getRecommendations(genre) {
       axios
-        .get("http://127.0.0.1:8000/api/games/" + genre)
+        .get(`${API_URL}/api/games/`, {
+          params: {
+            genre: genre
+          }
+        })
         .then((response) => response.data)
         .then((games) => (this.games = games));
     },
