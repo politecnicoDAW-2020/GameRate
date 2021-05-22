@@ -1,11 +1,10 @@
 <template>
   <div class="contain">
-    <h1>{{game}}</h1>
     <game-title :game="game" />
     <v-container>
       <v-row>
         <v-col>
-          <game-card :game="game" />
+          <game-data :game="game" />
         </v-col>
         <v-col>
           <synopsis :game="game" />
@@ -18,11 +17,11 @@
 
 <script>
 import axios from "axios";
-import GameData from "../components/GameData.vue";
-import GameCard from "../components/GameCard.vue";
 import Recommendations from "../components/Recommendations.vue";
 import Synopsis from "../components/Synopsis.vue";
 import GameTitle from "../components/GameTitle.vue";
+import GameCard from '../components/GameCard.vue';
+import GameData from '../components/GameData.vue';
 
 export default {
   
@@ -34,12 +33,12 @@ export default {
   },
 
   components: {
-    GameData,
-    GameCard,
     Recommendations,
     Synopsis,
     Recommendations,
     GameTitle,
+    GameCard,
+    GameData,
   },
   mounted() {
       axios

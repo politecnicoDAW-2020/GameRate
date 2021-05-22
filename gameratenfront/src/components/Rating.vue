@@ -23,6 +23,7 @@ export default {
   },
   props: {
     game: {},
+    user: {}
   },
 
   methods: {

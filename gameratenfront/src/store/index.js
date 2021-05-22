@@ -2,18 +2,20 @@ import axios from 'axios';
 import Vue from 'vue'
 import Vuex from 'vuex'
 import games from './module-games';
+import {shuffle} from '../utils/knuth'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     games: [],
+    recommendations: [],
     scores: []
   },
   getters: {
     games: state => {
       return state.games;
-    }
+    },
   },
   mutations: {
     SET_GAMES (state, games) {
@@ -34,7 +36,11 @@ export default new Vuex.Store({
     },
     GET_MVG_GAMES(state) {
       state.games.sort((a,b) => a.s)
-
+    },
+    GET_GAMES_BY_GENRE(state, _genre) {
+      const games = state.games.filter(({genre}) => genre === _genre)
+      const recommendations = state.recommendations = shuffle(games)
+      return recommendations
     }
   },
   actions: {
@@ -56,8 +62,12 @@ export default new Vuex.Store({
     getTitles({commit}) {
       commit('GET_TITLES');
     },
+
     findGameById({commit}, id) {
       commit("FIND_GAME_BY_ID", id)
+    },
+    getRecommendations({commit}, genre) {
+      commit("GET_GAMES_BY_GENRE", genre)
     }
     },
   modules: {

@@ -1,5 +1,6 @@
 <template>
   <v-row>
+    {{games[0].scores}}
     <v-avatar class="mr-2" v-for="game in games" :key="game.id">
       <img :src="require(`../assets/images/${game.image}`)" :title="game.title" />
     </v-avatar>
@@ -7,7 +8,10 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions, mapState } from 'vuex';
+import axios from 'axios'
+import { shuffle } from "../utils/knuth"
+
 export default {
   name: "Recommendations",
 
@@ -16,34 +20,20 @@ export default {
   },
   data() {
     return {
-      games: []
+      recommendations: []
     };
   },
-  props: {},
-
-  mounted() {
-    axios
-        .get(`http://127.0.0.1:8000/api/games/`, {
-          params: {
-            genre: genre
-          }
-        })
-        .then((response) => response.data)
-        .then((games) => (this.games = games));
-},
-
   methods: {
-    getRecommendations(genre) {
-      axios
-        .get(`http://127.0.0.1:8000/api/games/`, {
-          params: {
-            genre: genre
-          }
-        })
-        .then((response) => response.data)
-        .then((games) => (this.games = games));
-    },
+    ...mapActions(["getRecommendations"])
   },
+  computed: {
+    ...mapState(["games"]),
+    getGames: (genre) => {
+      const games = shuffle(genre)
+      return games
+    }
+  },
+
 };
 </script>
 
