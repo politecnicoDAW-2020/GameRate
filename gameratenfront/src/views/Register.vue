@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <h1 class="title">Sign Up</h1>
+    <h1 class="title">Regístrate</h1>
     <form action class="form" @submit.prevent="register">
       <label class="form-label" for="#email">Email:</label>
       <input
@@ -57,6 +57,9 @@ export default {
 <style lang="scss" scoped>
 .register {
   padding: 2rem;
+  background-image: url("../assets/images/login-background.png");
+  background-size: cover;
+
 }
 .title {
   text-align: center;

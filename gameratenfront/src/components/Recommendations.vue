@@ -1,14 +1,16 @@
 <template>
   <v-row>
-    {{games[0].scores}}
-    <v-avatar class="mr-2" v-for="game in games" :key="game.id">
+    También podría interesarte
+    <v-avatar class="mr-2" v-for="game in getRecommendations(this.genre)" :key="game.id">
+    <a :href="$router.resolve({name: 'GameDetail', params: {gameId: game.id}}).href"> 
       <img :src="require(`../assets/images/${game.image}`)" :title="game.title" />
+    </a>
     </v-avatar>
   </v-row>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 import axios from 'axios'
 import { shuffle } from "../utils/knuth"
 
@@ -24,14 +26,12 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["getRecommendations"])
   },
   computed: {
     ...mapState(["games"]),
-    getGames: (genre) => {
-      const games = shuffle(genre)
-      return games
-    }
+    ...mapGetters(["getRecommendations"]),
+  },
+  mounted () {
   },
 
 };

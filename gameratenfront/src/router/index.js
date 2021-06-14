@@ -5,8 +5,10 @@ import Login from "../views/Login.vue"
 import Register from "../views/Register.vue"
 import GameDetail from "../views/GameDetail.vue"
 import Create from "../views/Create.vue"
+import Update from "../views/Update.vue"
 import Profile from "../views/Profile.vue";
 import Pendant from "../views/Pendant.vue"
+import GameReviews from "../views/GameReviews.vue"
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -30,7 +32,7 @@ const ifAuthenticated = (to, from, next) => {
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Index',
     component: Home
   },
   {
@@ -56,6 +58,11 @@ const routes = [
     component: Create
   },
   {
+    path: '/update',
+    name: 'Update',
+    component: Update
+  },
+  {
     path: '/profile',
     name: 'Profile',
     component: Profile,
@@ -65,6 +72,11 @@ const routes = [
     path: '/pendant',
     name: 'Pendant',
     component: Pendant
+  },
+  {
+    path: '/game/reviews/:gameId',
+    name: 'Reviews',
+    component: GameReviews
   },
   {
     path: '/about',

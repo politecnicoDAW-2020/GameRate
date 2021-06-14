@@ -9,13 +9,33 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     games: [],
-    recommendations: [],
-    scores: []
+    scores: [],
+    user: ""
   },
   getters: {
     games: state => {
       return state.games;
     },
+    gameById: (state) => (_id) => {
+      return state.games.find(({id}) => id === _id)
+    },
+    getIdByTitle: (state) => (_title) => {
+      const game = state.games.find(({title}) => title == _title)
+      return game.id
+    },
+    getTitles: (state) => state.games.map(({title}) => title),
+    getRecommendations: (state) => (_genre) => {
+      const games = state.games.filter(({genre}) => genre === _genre)
+      const recommendations  = shuffle(games)
+      return recommendations
+    },
+    sortGamesByCreated: (state) => {
+      const gamesSorted = state.games.sort((a,b) => (a.created_at < b.created_at) ? 1 : ((b.created_at < a.created_at) ? -1 : 0))
+      console.log(gamesSorted)
+      return gamesSorted.slice(0, 6)
+    },
+
+    user: (state) => state.user
   },
   mutations: {
     SET_GAMES (state, games) {
@@ -27,9 +47,6 @@ export default new Vuex.Store({
     FIND_SCORE_BY_ID(state, id) {
       const scoreObj = state.scores.find(({game_id}) => game_id === id);
       return scoreObj.score;
-    },
-    GET_TITLES(state) {
-      return state.games.map(({title}) => title)
     },
     FIND_GAME_BY_ID(state, _id) {
       return state.games.find(({id}) => id === _id)
@@ -55,12 +72,8 @@ export default new Vuex.Store({
       axios.get(`http://127.0.0.1:8000/api/scores/`)
       .then(response => response.data)
       .then(scores => {
-        console.log(scores);
         commit('SET_SCORES', scores)
       })
-    },
-    getTitles({commit}) {
-      commit('GET_TITLES');
     },
 
     findGameById({commit}, id) {

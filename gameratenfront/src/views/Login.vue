@@ -1,18 +1,20 @@
 <template>
   <div class="login">
-    <h1 class="title">Login in the page</h1>
-    <form action class="form">
+    <h1 class="title">Accede a la web</h1>
+    <h1 class="register">¿Aún no tienes cuenta? <a class="register-link" href="/register">Regístrate</a></h1>
+    <form action class="form" @submit.prevent="login">
       <label class="form-label" for="#email">Email:</label>
       <input v-model="email" class="form-input" type="email" id="email" required placeholder="Email">
       <label class="form-label" for="#password">Password:</label>
       <input v-model="password" class="form-input" type="password" id="password" placeholder="Password">
-      <input class="form-submit" type="submit" value="Login">
     <v-alert
         v-if="error"
         border="right"
         color="red"
         type="error"
     >Email o contraseña incorrecta</v-alert>
+    <input class="form-submit" type="submit" value="Login">
+
     </form>
   </div>
 </template>
@@ -31,13 +33,14 @@ export default {
 
     methods: {
         async login() {
-            try {
-                await auth.login(this.email, this.password);
-                const user = {
-                    email: this.email
-                };
-                auth.setUserLogged(user);
+             try {
+                const result = await auth.login(this.email, this.password);
+                const type = result.data.user.type
+                const userId = result.data.user.id
+                auth.setUserLogged(this.email, userId);
+                auth.setUserType(type)
                 this.$router.push("/");
+                location.reload()
             } catch (error) {
                 this.error = true;
       }
@@ -48,10 +51,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.register-link {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  text-decoration: none;
+}
+
 .login {
   padding: 2rem;
+  background-image: url("../assets/images/login-background.png");
+  background-size: cover;
 }
-.title {
+.title, .register {
   text-align: center;
 }
 .form {

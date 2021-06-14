@@ -1,4 +1,5 @@
 <template>
+<div class="header">
       <v-app-bar app color="teal" dark>
       <div class="d-flex align-center">
         <v-btn to="/pendant">
@@ -15,6 +16,7 @@
         <span class="mr-2">{{ user.name }}</span>
       </v-btn>
     </v-app-bar>
+  </div>
 </template>
 
 <script>

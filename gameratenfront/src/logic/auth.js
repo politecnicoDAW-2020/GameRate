@@ -4,14 +4,26 @@ import Cookies from "js-cookie";
 const ENDPOINT_PATH = "";
 
 export default {
-    setUserLogged(userLogged) {
-        Cookies.set("userLogged", userLogged);
+    setUserLogged(userLogged, userId) {
+        localStorage.setItem("userLogged", userLogged);
+        localStorage.setItem("userId", userId)
+    },
+
+    setUserType(userType) {
+        localStorage.setItem('userType', userType)
+    },
+    getUserType(userType) {
+        return localStorage.getItem('userType')
     },
     getUserLogged() {
-        return Cookies.get("userLogged");
+        return localStorage.getItem("userLogged")
+    },
+    getUserId() {
+        return localStorage.getItem("userId")
     },
     deleteUserLogged() {
-        Cookies.remove('userLogged');
+        localStorage.removeItem("userLogged")
+        localStorage.removeItem("userId")
     },
     register(email, password) {
         const user = {email, password};
@@ -19,6 +31,10 @@ export default {
     },
     login(email, password) {
         const user = { email, password };
-        return axios.post(ENDPOINT_PATH + "login", user);
+        return axios.post(`http://127.0.0.1:8000/api/auth/login/`, user);
+    },
+    isAuthenticated() {
+        const user = localStorage.getItem('userLogged');
+        return user ? true : false
     }
 };

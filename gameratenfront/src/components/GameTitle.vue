@@ -1,7 +1,5 @@
 <template>
-    <v-banner elevation="10">
-        {{game.title}}
-    </v-banner>
+    <span><h1>{{game.title}}</h1></span>
 </template>
 
 <script>
