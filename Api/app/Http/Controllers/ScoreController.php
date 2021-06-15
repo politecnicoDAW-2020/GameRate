@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Game;
 use App\Score;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,10 +15,38 @@ class ScoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAverageScore($gameID)
+    public function getScoresById($gameID)
     {
-        $avg = DB::select("SELECT AVG(score) AS NotaMedia FROM scores WHERE game_id =".$gameID);
+        $avg = DB::select("SELECT score FROM scores WHERE game_id =".$gameID);
         return $avg;
+    }
+
+    public function getScoreByUser($gameId, $userId) {
+        try {
+            $score = Score::where(['game_id' => $gameId, 'user_id' => $userId])->first();
+        }catch (\Exception $e) {
+            return $e;
+        }
+        return $score->score;
+    }
+
+    public function addScore(Request $request) {
+        $user = User::where(['email' => $request->email])->first();
+
+        $exists = Score::where(['game_id' => $request->game, 'user_id' => $user->id])->get();
+
+        if (count($exists) > 0) {
+            $exists[0]->score = $request->score;
+            $exists[0]->save();
+            return $exists;
+        } else {
+            $score = new Score();
+            $score->game_id = $request->game;
+            $score->user_id = $user->id;
+            $score->score = $request->score;
+            $score->save();
+            return $score;
+        }
     }
 
     public function getScores() {

@@ -2,26 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Game;
-use App\Review;
+use App\GameList;
 use Illuminate\Http\Request;
 
-class ReviewController extends Controller
+class GameListController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function publish(Request $request)
+    public function index()
     {
-        $review = new Review();
-        $review->user_id = $request->user_id;
-        $review->game_id = $request->game_id;
-        $review->review = $request->review;
-        $review->save();
-
-        return $review;
+        //
     }
 
     /**
@@ -48,10 +41,10 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Review  $review
+     * @param  \App\GameList  $gameList
      * @return \Illuminate\Http\Response
      */
-    public function show(Review $review)
+    public function show(GameList $gameList)
     {
         //
     }
@@ -59,10 +52,10 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Review  $review
+     * @param  \App\GameList  $gameList
      * @return \Illuminate\Http\Response
      */
-    public function edit(Review $review)
+    public function edit(GameList $gameList)
     {
         //
     }
@@ -71,10 +64,10 @@ class ReviewController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Review  $review
+     * @param  \App\GameList  $gameList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, GameList $gameList)
     {
         //
     }
@@ -82,10 +75,10 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Review  $review
+     * @param  \App\GameList  $gameList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(GameList $gameList)
     {
         //
     }
