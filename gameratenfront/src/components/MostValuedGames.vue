@@ -1,7 +1,7 @@
 <template>
   <div class="gallery">
       <div class="gallery-panel"
-          v-for="game in games"
+          v-for="game in sortGamesByCreated"
           :key="game.id">
           <game-card :game="game" />
       </div>
@@ -9,15 +9,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import GameCard from './GameCard.vue'
-import axios from 'axios'
 export default {
     name: "MostValuedGames",
+        components: {
+        GameCard
+    },
     props: {
         games: {}
     },
-    components: {
-        GameCard
+    computed: {
+      ...mapGetters(["sortGamesByCreated"])
     },
 }
 </script>

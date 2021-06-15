@@ -5,9 +5,11 @@
     outlined
   >
     <v-list-item three-line>
+      
       <v-list-item-content>
         <v-list-item-title class="text-h5 mb-1">
-          {{game.title}}
+    <router-link :to="{name: 'GameDetail', params: { gameId: game.id }}"> 
+{{game.title}}</router-link>
         </v-list-item-title>
         <v-list-item-subtitle>{{game.genre}}</v-list-item-subtitle>
       </v-list-item-content>
@@ -42,11 +44,16 @@ export default {
     methods: {
         deleteFromList(gameId) {
             axios.delete(`http://127.0.0.1:8000/api/games/list/${gameId}`)
+            .finally( () => {alert("Eliminado Correctamente")
+            this.$router.go('/pendant')})
         }
     },
 }
 </script>
 
 <style>
+li a {
+  text-decoration: none;
+}
 
 </style>

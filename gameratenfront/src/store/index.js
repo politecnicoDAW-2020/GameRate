@@ -1,7 +1,6 @@
 import axios from 'axios';
 import Vue from 'vue'
 import Vuex from 'vuex'
-import games from './module-games';
 import {shuffle} from '../utils/knuth'
 
 Vue.use(Vuex)
@@ -24,15 +23,20 @@ export default new Vuex.Store({
       return game.id
     },
     getTitles: (state) => state.games.map(({title}) => title),
-    getRecommendations: (state) => (_genre) => {
-      const games = state.games.filter(({genre}) => genre === _genre)
+    getRecommendations: (state) => (_genre, _title) => {
+      const games = state.games.filter(({title, genre}) => genre === _genre && title !== _title)
       const recommendations  = shuffle(games)
-      return recommendations
+      return recommendations.slice(0,6)
     },
     sortGamesByCreated: (state) => {
       const gamesSorted = state.games.sort((a,b) => (a.created_at < b.created_at) ? 1 : ((b.created_at < a.created_at) ? -1 : 0))
       console.log(gamesSorted)
       return gamesSorted.slice(0, 6)
+    },
+    sortGamesAlphabet: (state) => {
+      const gamesSorted = state.games.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
+      return gamesSorted
+
     },
 
     user: (state) => state.user
@@ -53,11 +57,6 @@ export default new Vuex.Store({
     },
     GET_MVG_GAMES(state) {
       state.games.sort((a,b) => a.s)
-    },
-    GET_GAMES_BY_GENRE(state, _genre) {
-      const games = state.games.filter(({genre}) => genre === _genre)
-      const recommendations = state.recommendations = shuffle(games)
-      return recommendations
     }
   },
   actions: {

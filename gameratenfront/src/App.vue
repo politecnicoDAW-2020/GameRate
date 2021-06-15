@@ -10,7 +10,8 @@
     </v-banner>
         </div>
         <div class="menu">
-          <v-btn to="/pendant"> Mi Lista </v-btn>
+          <v-btn to="/pendant"> Mis Juegos Pendientes </v-btn>
+          <v-btn to="/gamelist">Lista de juegos</v-btn>
         </div>
         <v-spacer></v-spacer>
           <span><search class="search" /></span>
@@ -41,17 +42,6 @@ import auth from "./logic/auth";
 export default {
   components: { Footer, Search, Search },
   name: "App",
-
-  data: () => ({
-     btns: [
-        ['Removed', '0'],
-        ['Large', 'lg'],
-        ['Custom', 'b-xl'],
-      ],
-      colors: ['deep-purple accent-4', 'error', 'teal darken-1'],
-      items: [...Array(4)].map((_, i) => `Item ${i}`),
-  }),
-
   methods: {
     logout() {
       auth.deleteUserLogged();
@@ -76,17 +66,6 @@ export default {
     this.$store.dispatch("loadGames");
     this.$store.dispatch("loadScores");
   },
-
-  /*   create: function () {
-    axios.interceptors.response.use(undefined, function (err) {
-      return new Promise(function (resolve, reject) {
-        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
-          this.$store.dispatch(AUTH_LOGOUT);
-        }
-        throw err;
-      });
-    });
-  }, */
 };
 </script>
 

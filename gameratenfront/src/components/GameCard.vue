@@ -10,7 +10,7 @@
       :src="require(`../assets/images/${game.image}`)"
     ></v-img>
 
-    <v-card-title class="game-title">
+    <v-card-title class="game-title-card">
       {{game.title}}
     </v-card-title>
     </router-link>
@@ -26,7 +26,7 @@
     {{this.getAvgScore}}
     </v-chip>
     </span>
-    <RatingSelect :game="game" :user="user" />
+    <RatingSelect :game="game" :user="getUserId" />
   </v-card>
   </div>
 </template>
@@ -48,8 +48,12 @@ export default {
           cover: require(`../assets/images/${game.image}`)
         }
     },
+
     props: {
-        game: {},
+      game: {
+        type: Object,
+        default: {} 
+      },
     },
 
     methods: {
@@ -67,25 +71,30 @@ export default {
           )
           const average = sum/gameScores.length
           return average
-        }
+        },
+        getUserId() {
+          return localStorage.getItem("userId")
+          }
     },
  
     mounted () {
-        this.user = localStorage.getItem("userId")
     },
 
 }
 </script>
 
 <style>
-.game-title {
-  height: 20px;
-  font-size: 16px;
+.game-title-card {
+  font-size: 20px;
   color: black;
 }
 
+a {
+  text-decoration: none;
+}
+
 .card {
-  margin-right: 30px;
+  margin-left: 30px;
   margin-top: 30px;
   border: 2px solid black;
 }

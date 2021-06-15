@@ -8,11 +8,12 @@
       flat
       tile
     >
-      <v-card-title class="teal">
+      <v-card-title class="teal top-footer">
         <strong class="subheading">¡Mantente conectado con nuestras redes sociales!</strong>
 
         <v-spacer></v-spacer>
 
+        <div class="rrss-btns">
         <v-btn
           v-for="icon in icons"
           :key="icon"
@@ -24,9 +25,7 @@
             {{ icon }}
           </v-icon>
         </v-btn>
-                <v-spacer></v-spacer>
-
-      <admin-menu />
+        </div>
       </v-card-title>
 
       <v-card-text class="py-2 white--text text-center">
@@ -37,9 +36,7 @@
 </template>
 
 <script>
-import AdminMenu from './AdminMenu.vue'
   export default {
-  components: { AdminMenu },
     data: () => ({
       icons: [
         'mdi-facebook',

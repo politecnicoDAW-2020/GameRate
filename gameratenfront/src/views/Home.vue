@@ -1,7 +1,8 @@
 <template>
 <div class="mvp-container">
-  <span class="top-title">Últimos juegos añadidos</span>
-  <most-valued-games :games="sortGamesByCreated" />
+  <div class="title-container">
+  <span class="top-title">ÚLTIMOS JUEGOS AÑADIDOS</span></div>
+  <most-valued-games />
 </div>
 </template>
 
@@ -19,11 +20,8 @@ import axios from 'axios'
     },
 
     methods: {
-      ...mapActions(["setGameList"]),
-
     },
     computed: {
-      ...mapGetters(['sortGamesByCreated']),
       ...mapState(["games"]),      
     },
   }
@@ -35,14 +33,21 @@ import axios from 'axios'
     border: 6px solid rgb(160, 160, 160);
     border-radius: 5px;
     background-image: url("../assets/images/login-background.png");
-    background-size: cover;
+    background-size:cover
  }
   .top-title {
-    margin-left: 31%;
-    font-size: 40px;
-    color: white;
-    background-color: teal;
+    color: teal;
+    border-bottom: 6px solid rgb(160, 160, 160);
+    background-color: white;
     padding: 10px;
     text-align: center;
+    font-weight: bolder;
+    font-size: 40px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+  }
+
+  .title-container {
+    display: flex;
+    justify-content: center;
   }
 </style>

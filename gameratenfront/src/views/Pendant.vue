@@ -1,12 +1,12 @@
 <template>
   <div class="pendant-container">
-    <div class="spinner" v-if="loading">
-      <v-progress-circular indeterminate color="primary"></v-progress-circular>
+    <div class="pendant-spinner" v-if="loading">
+      <pixel-spinner :animation-duration="2000" :size="70" color="teal" />
     </div>
     <div v-else>
-      <paginate class="pendant-cards" name="games" :list="games" :per="4">
+      <paginate class="pendant-cards" name="games" :list="games" :per="3">
         <li>
-          <game-card-list
+<game-card-list
             v-for="game in paginated('games')"
             :key="game.id"
             :game="game"
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import PendentList from "../components/PendentList.vue";
+import { PixelSpinner } from "epic-spinners";
 import auth from "../logic/auth";
 import API_URL from "../constants/endpoints";
 import axios from "axios";
@@ -31,7 +31,7 @@ import GameCard from "../components/GameCard.vue";
 import GameCardList from "../components/GameCardList.vue";
 
 export default {
-  components: { PendentList, GameCard, GameCardList },
+  components: { GameCard, GameCardList, PixelSpinner },
   data() {
     return {
       title: "Tus juegos pendientes",
@@ -49,19 +49,22 @@ export default {
 
   mounted() {
     this.loading = true;
+    console.log(this.userId)
     axios
       .get(`http://127.0.0.1:8000/api/games/list/${this.userId}`)
-      .then((response) => response.data)
-      .then((games) => (this.games = games))
+      .then((response) => (response.data))
+      .then((games) => {
+        (this.games = games)})
       .finally(() => (this.loading = false));
   },
 };
 </script>
 
 <style>
-.pendant-container {
-  display: flex;
-  justify-content: center;
+
+.pendant-spinner {
+  margin-top: 15%;
+  margin-left: 40%;
 }
 
 ul {
@@ -69,7 +72,7 @@ ul {
 }
 
 .pendant-cards li {
-  display: flex;
+  display:flex
 }
 
 .paginate-links {

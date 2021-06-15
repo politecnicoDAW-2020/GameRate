@@ -36,9 +36,12 @@
       Opiniones de los usuarios
     </h1>
     <paginate name="reviews" :list="reviews" :per="5">
+      <div v-if="!reviewsAreEmpty" class="reviews">
     <v-row v-for="review in paginated('reviews')" :key="review.id">
       <review :review="review" />
     </v-row>
+    </div>
+    <div v-else>Este juego aún no tiene ninguna opinión</div>
     </paginate>
     <paginate-links for="reviews" :show-step-links="true"></paginate-links>
   </v-col>
@@ -63,7 +66,7 @@ export default {
     publish() {
       axios
         .post(`http://127.0.0.1:8000/api/review/save`, {
-          user_id: 1,
+          user_id: localStorage.getItem('userId'),
           game_id: this.$route.params.gameId,
           review: this.textReview,
         })
@@ -73,14 +76,18 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-        });
+        })
+        .finally(this.$router.push(`/game/reviews/${this.$route.params.gameId}`));
     },
   },
 
   computed: {
     ...mapGetters(["gameById", "reviewsById"]),
+    reviewsAreEmpty() {
+      return this.reviews.length === 0
+    }
   },
-  beforeCreate() {
+  mounted() {
     axios
       .get(
         `http://127.0.0.1:8000/api/games/reviews/${this.$route.params.gameId}/`

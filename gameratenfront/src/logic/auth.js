@@ -24,6 +24,7 @@ export default {
     deleteUserLogged() {
         localStorage.removeItem("userLogged")
         localStorage.removeItem("userId")
+        localStorage.removeItem("userType")
     },
     register(email, password) {
         const user = {email, password};

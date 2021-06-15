@@ -1,12 +1,12 @@
+
 <template>
-    <div class="title-detail-container">
-    <span><h1>{{game.title}}</h1></span>
-    </div>
+      <router-link :to="{name: 'GameDetail', params: { gameId: game.id }}"> 
+<span>{{game.title}}</span>
+      </router-link>
 </template>
 
 <script>
 export default {
-    name: "GameTitle",
     props: {
         game: {
             type: Object,
@@ -18,8 +18,5 @@ export default {
 </script>
 
 <style>
-    .title-detail-container {
-        margin-top: 30px;
-    }
 
 </style>

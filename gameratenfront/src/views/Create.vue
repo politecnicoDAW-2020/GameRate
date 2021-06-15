@@ -78,6 +78,7 @@ export default {
       "Puzzles",
       "Shooter",
       "RPG",
+      "Deportes"
     ],
     players: [1, 2, 3, 4],
   }),
@@ -99,9 +100,8 @@ export default {
           })
           .catch((error) => {
             console.log(error);
-          });
-        const dataobj = { ...this.form, image: this.convertStringTitle };
-        console.log(dataobj);
+          })
+          .finally(this.$router.push('/'));
       }
     },
     validate() {
