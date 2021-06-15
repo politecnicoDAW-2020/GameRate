@@ -15,19 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => 'admin'], function () {
+    Route::post('/api/games/save', 'GameController@store');
+    Route::put('/api/games/update/{id}', 'GameController@update');
+    Route::delete('/api/games/{gameID}', 'GameController@destroy');
+});
+
 Route::get('/api/games',  'GameController@index');
 
 Route::get('/api/games/{gameID}', 'GameController@gameById');
 
 Route::get('/api/games/genre/{genre}', 'GameController@gamesByGenre');
 
-Route::post('/api/games/save', 'GameController@store');
-
-Route::put('api/games/{id}', 'GameController@update');
-
 Route::post('api/review/save', 'ReviewController@publish')->middleware(\App\Http\Middleware\Cors::class);
-
-Route::put('/api/games/update/{id}', 'GameController@update');
 
 Route::get('/api/scores/{id}', 'ScoreController@getScoresById');
 
@@ -48,5 +48,3 @@ Route::post('/api/games/list', 'GameController@addToList');
 Route::get('/api/games/list/{id}', 'GameController@getPendentList');
 
 Route::delete('/api/games/list/{gameId}', 'GameController@deleteFromList');
-
-Route::delete('/api/games/{gameID}', 'GameController@destroy');
