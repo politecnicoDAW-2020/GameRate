@@ -8,11 +8,6 @@ import VuePaginate from 'vue-paginate'
 
 Vue.config.productionTip = false
 
-const token = localStorage.setItem('user-token', "a")
-if (token) {
-  axios.defaults.headers.common['Authorization'] = token
-}
-
 new Vue({
   router,
   store,

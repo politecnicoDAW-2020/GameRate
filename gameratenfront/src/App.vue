@@ -6,7 +6,7 @@
            <v-banner
       single-line
     >
-      <a class="logo" href="/">GameRate</a>
+      <a class="logo" href="/"><img src="./assets/logo.png"> GameRate</a>
     </v-banner>
         </div>
         <div class="menu">
@@ -87,6 +87,10 @@ export default {
   font: 2em sans-serif;
   text-decoration: none;
   padding-right: 10px;
+}
+
+.logo img {
+  height: 40px;
 }
 
 </style>

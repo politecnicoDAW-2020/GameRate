@@ -1,6 +1,5 @@
 <template>
   <div class="admin-options">
-    <v-btn to="/create" color="teal">Añadir</v-btn>
     <router-link
       :to="{
         name: 'Update',
@@ -9,6 +8,7 @@
       ><v-btn color="blue">Editar</v-btn>
     </router-link>
     <v-btn color="red" @click="deleteGame">Eliminar</v-btn>
+    <v-btn class="new-game" to="/create" color="yellow">Nuevo</v-btn>
   </div>
 </template>
 
@@ -30,4 +30,5 @@ export default {
 </script>
 
 <style>
+
 </style>

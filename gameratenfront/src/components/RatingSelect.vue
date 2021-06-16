@@ -1,15 +1,16 @@
 <template>
+<div class="rating-select">
   <v-select
     v-model="select"
     :items="scores"
     :label="userScore"
     menu-props="auto"
-    item-value= "9"
     hide-details
     prepend-icon="mdi-star"
     single-line
     @change="handleRating($event)"
   ></v-select>
+  </div>
 </template>
 
 <script>
@@ -21,7 +22,7 @@ export default {
       select: {nota: 0},
       scores: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       user: auth.getUserId(),
-      userScore: ""
+      userScore: "Mi nota: "
     };
   },
   props: {
@@ -50,7 +51,7 @@ export default {
 
   mounted () {
     axios.get(`http://127.0.0.1:8000/api/scoreuser/${this.game.id}/${this.user}`).then(response => response.data)
-    .then((score) => this.userScore = String(score) );
+    .then((score) => this.userScore = this.userScore + String(score) );
   },
 };
 </script>

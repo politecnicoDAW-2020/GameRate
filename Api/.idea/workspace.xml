@@ -20,15 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b63af7a-a0b5-4dfc-8425-da6c59a3aa17" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gameratenfront/src/components/AdminButtons.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../gameratenfront/src/components/AdminButtons.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gameratenfront/src/components/RatingSelect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../gameratenfront/src/components/RatingSelect.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gameratenfront/src/components/Recommendations.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../gameratenfront/src/components/Recommendations.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gameratenfront/src/components/Review.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../gameratenfront/src/components/Review.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gameratenfront/src/views/GameReviews.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../gameratenfront/src/views/GameReviews.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -165,7 +170,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623751481764</updated>
-      <workItem from="1623751482862" duration="1525000" />
+      <workItem from="1623751482862" duration="2125000" />
+      <workItem from="1623767672621" duration="649000" />
+      <workItem from="1623833083464" duration="3765000" />
     </task>
     <servers />
   </component>
@@ -182,5 +189,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

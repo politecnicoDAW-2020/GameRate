@@ -4,8 +4,8 @@
       <v-dialog width="500"
         v-model="dialog">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
-            Publicar Review
+          <v-btn color="teal" dark v-bind="attrs" v-on="on">
+            Escribe tu opinión<v-icon>mdi-message-draw</v-icon>
           </v-btn>
         </template>
 
@@ -19,7 +19,7 @@
               auto-grow
               v-model="textReview"
               full.width
-              background-color="teal lighten-4"
+              background-color="rgb(170,240,209)"
               name="input-7-4"
             ></v-textarea>
           </v-col>
@@ -27,7 +27,7 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="publish"> Publicar </v-btn>
+            <v-btn color="teal" text @click="publish"> Publicar </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -43,7 +43,11 @@
     </div>
     <div v-else>Este juego aún no tiene ninguna opinión</div>
     </paginate>
-    <paginate-links for="reviews" :show-step-links="true"></paginate-links>
+    <paginate-links for="reviews" :show-step-links="true" :hide-single-page="true"
+></paginate-links>
+    <span v-if="$refs.paginator">
+  Viewing {{$refs.paginator.pageItemsCount}} results
+</span>
   </v-col>
 </template>
 
@@ -116,6 +120,10 @@ export default {
     margin-right: 0.3rem;
     cursor:pointer;
     border-radius: 3px;
+}
+
+ul.paginate-links > li.active {
+  background-color: rgb(170,240,209);
 }
 .paginate-links li a {
     color:white;

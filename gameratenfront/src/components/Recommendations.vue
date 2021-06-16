@@ -5,7 +5,7 @@
     </v-row>
     <v-row>
       <v-avatar
-        class="mr-2 mb-2"
+        class="mr-2 mb-2 recommendation-avatar"
         tile
         size="80"
         v-for="game in getRecommendations(this.genre, this.title)"
@@ -69,6 +69,10 @@ export default {
 
 img:hover .tooltiptext {
   visibility: visible;
+}
+
+.recommendation-avatar {
+  border: 2px solid teal;
 }
 
 </style>

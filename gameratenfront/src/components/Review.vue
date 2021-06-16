@@ -7,7 +7,7 @@
           auto-grow
           readonly
           full.width
-          background-color="teal lighten-2"
+          background-color="rgb(170,240,209)"
           name="input-7-4"
           :value="review.review"
         ></v-textarea>
