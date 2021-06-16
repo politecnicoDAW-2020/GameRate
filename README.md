@@ -10,21 +10,6 @@ La aplicación está dividida en un frontend desarrollado en **Vue.js**, utiliza
 ```
 composer install
 npm install
-``` 
-
-Base de datos para test (.env): ***TODO***: *Docker base de datos local.*
-
-
-```
-DB_CONNECTION=mysql
-DB_HOST=146.59.155.170
-DB_PORT=3306
-DB_DATABASE=gamerate
-DB_USERNAME=root
-DB_PASSWORD=presariodb
-```
-
-```
 php artisan serve 
 ```
 
